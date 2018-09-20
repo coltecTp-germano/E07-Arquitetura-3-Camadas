@@ -14,7 +14,7 @@ import static br.ufmg.coltec.tp.appacademico.data.contract.AlunoContract.AlunoEn
 @Dao
 public interface IAlunoRepository {
     @Insert
-    long insert(Aluno aluno);
+    int insert(Aluno aluno);
 
     @Update
     int update(Aluno aluno);

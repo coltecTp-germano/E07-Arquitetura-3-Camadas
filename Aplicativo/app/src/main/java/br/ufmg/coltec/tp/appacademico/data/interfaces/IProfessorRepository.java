@@ -14,7 +14,7 @@ import static br.ufmg.coltec.tp.appacademico.data.contract.ProfessorContract.Pro
 @Dao
 public interface IProfessorRepository {
     @Insert
-    long insert(Professor professor);
+    int insert(Professor professor);
 
     @Update
     int update(Professor professor);
