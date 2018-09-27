@@ -1,18 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:orientation="vertical"
+    tools:context=".view.MainActivity">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginTop="20dp"
+        android:text="Funcionalidades"
+        android:textAlignment="center"
+        android:textColor="@android:color/black"
+        android:textSize="20dp" />
 
-</android.support.constraint.ConstraintLayout>
+    <LinearLayout
+        android:id="@+id/alunos"
+        android:layout_marginTop="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/lblalunos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:padding="10dp"
+            android:text="Alunos"
+            android:textSize="17dp" />
+
+        <Button
+            android:id="@+id/btn_add_aluno"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Adicionar aluno "/>
+
+        <Button
+            android:id="@+id/btn_search_aluno"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Buscar aluno " />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_below="@id/alunos"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/lblprofessores"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:padding="10dp"
+            android:text="Professores"
+            android:textSize="17dp" />
+
+        <Button
+            android:id="@+id/btn_add_professor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Adicionar professor "/>
+
+        <Button
+            android:id="@+id/btn_search_professor"
+            android:layout_width="182dp"
+            android:layout_height="wrap_content"
+            android:text="Buscar professor " />
+
+    </LinearLayout>
+
+</RelativeLayout>
