@@ -3,25 +3,28 @@ package br.ufmg.coltec.tp.appacademico.view.Aluno;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import javax.inject.Inject;
 
 import br.ufmg.coltec.tp.appacademico.R;
 import br.ufmg.coltec.tp.appacademico.data.interfaces.IAlunoRepository;
-import br.ufmg.coltec.tp.appacademico.model.Aluno;
-import br.ufmg.coltec.tp.appacademico.service.FachadaAluno;
-import br.ufmg.coltec.tp.appacademico.service.interfaces.IFachadaAluno;
+import br.ufmg.coltec.tp.appacademico.view.SearchModel;
+import ir.mirrajabi.searchdialog.SimpleSearchDialogCompat;
+import ir.mirrajabi.searchdialog.core.BaseSearchDialogCompat;
+import ir.mirrajabi.searchdialog.core.SearchResultListener;
+import ir.mirrajabi.searchdialog.core.Searchable;
+
+import static android.content.ContentValues.TAG;
 
 public class AlunoActivity extends Activity {
 
-    @Inject
-    public IAlunoRepository alunoRepository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +32,6 @@ public class AlunoActivity extends Activity {
         setContentView(R.layout.activity_aluno);
 
         Button add     = findViewById(R.id.add_aluno);
-        Button del     = findViewById(R.id.del_aluno);
         Button search  = findViewById(R.id.search_aluno);
 
 
@@ -71,21 +73,42 @@ public class AlunoActivity extends Activity {
         });
 
 
-        // Delete aluno
-        del.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
 
         // Search aluno
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+                Log.e(TAG, "onClick: Entrou no onclick");
+
+            new SimpleSearchDialogCompat(AlunoActivity.this,
+                    "Deletar um aluno",
+                    "Nome...",
+                    null,
+                    initData(),
+                    new SearchResultListener<Searchable>() {
+                        @Override
+                        public void onSelected(BaseSearchDialogCompat baseSearchDialogCompat, Searchable searchable, int i) {
+                            Toast.makeText(AlunoActivity.this,
+                                    searchable.getTitle()+" deletado",
+                                    Toast.LENGTH_SHORT)
+                                    .show();
+                            baseSearchDialogCompat.dismiss();
+                        }
+                    }).show();
             }
         });
+    }
+
+    private ArrayList<SearchModel> initData() {
+        ArrayList<SearchModel> items = new ArrayList<>();
+        items.add(new SearchModel("Bryan"));
+        items.add(new SearchModel("Germano"));
+        items.add(new SearchModel("Bernardo"));
+        items.add(new SearchModel("Mariana"));
+        items.add(new SearchModel("Gustavo"));
+        items.add(new SearchModel("Rita"));
+
+        return items;
     }
 }

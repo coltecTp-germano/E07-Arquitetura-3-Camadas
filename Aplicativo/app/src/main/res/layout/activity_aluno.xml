@@ -22,12 +22,6 @@
             android:layout_height="wrap_content"
             android:text="Deletar Aluno"/>
 
-        <Button
-            android:id="@+id/search_aluno"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Buscar Aluno"/>
-
     </LinearLayout>
 
 </RelativeLayout>
