@@ -8,20 +8,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.util.List;
-
 import javax.inject.Inject;
 
 import br.ufmg.coltec.tp.appacademico.R;
-import br.ufmg.coltec.tp.appacademico.data.interfaces.IAlunoRepository;
+import br.ufmg.coltec.tp.appacademico.crossCutting.IoC.MainApplication;
 import br.ufmg.coltec.tp.appacademico.model.Aluno;
-import br.ufmg.coltec.tp.appacademico.service.FachadaAluno;
 import br.ufmg.coltec.tp.appacademico.service.interfaces.IFachadaAluno;
 
 public class AlunoActivity extends Activity {
 
     @Inject
-    public IAlunoRepository alunoRepository;
+    public IFachadaAluno fachadaAluno;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +29,7 @@ public class AlunoActivity extends Activity {
         Button del     = findViewById(R.id.del_aluno);
         Button search  = findViewById(R.id.search_aluno);
 
+        MainApplication.getComponent().inject(this);// informando ao dagger sobre o uso de um component e a necessidade de injetar dependência
 
         // Add aluno
         add.setOnClickListener(new View.OnClickListener() {
@@ -50,7 +48,7 @@ public class AlunoActivity extends Activity {
                     @Override
                     public void onClick(View v) {
                         if (!nome.getText().toString().isEmpty() && !matricula.getText().toString().isEmpty()) {
-
+                            fachadaAluno.addAluno(new Aluno(nome.toString(), matricula.toString()));
                             Toast.makeText(AlunoActivity.this,
                                     "Adicionado com sucesso",
                                     Toast.LENGTH_SHORT)

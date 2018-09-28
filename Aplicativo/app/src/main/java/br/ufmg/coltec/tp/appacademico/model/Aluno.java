@@ -28,10 +28,14 @@ public class Aluno {
 
     public Aluno() {}
 
-    public Aluno(long id, String nome, String matricula) {
-        this.id = id;
+    public Aluno(String nome, String matricula) {
         this.nome = nome;
         this.matricula = matricula;
+    }
+
+    public Aluno(long id, String nome, String matricula) {
+        this(nome, matricula);
+        this.id = id;
     }
 
     public long getId() {
