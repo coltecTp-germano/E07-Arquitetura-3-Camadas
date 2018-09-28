@@ -11,10 +11,12 @@ import dagger.Provides;
 @Module
 public class AlunoModule {
 
-    @Provides
-    public IAlunoRepository providesAlunoRepository(Database db) {
-        return db.getAlunoRepository();
-    }
+    /* Comentei pq o metodo de get ta comentado tbm, tava dando algum erro de conflito */
+
+//    @Provides
+//    public IAlunoRepository providesAlunoRepository(Database db) {
+//        return db.getAlunoRepository();
+//    }
 
     @Provides
     public AlunoController provideAlunoController(IAlunoRepository repository) {

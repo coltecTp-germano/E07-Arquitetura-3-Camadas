@@ -11,10 +11,12 @@ import dagger.Provides;
 @Module
 public class ProfessorModule {
 
-    @Provides
-    public IProfessorRepository providesProfessorRepository(Database db) {
-        return db.getProfessorRepository();
-    }
+/* Comentei pq o metodo de get ta comentado tbm, tava dando algum erro de conflito */
+
+//    @Provides
+//    public IProfessorRepository providesProfessorRepository(Database db) {
+//        return db.getProfessorRepository();
+//    }
 
     @Provides
     public ProfessorController provideProfessorController(IProfessorRepository repository) {

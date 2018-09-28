@@ -31,7 +31,7 @@ public class AlunoActivity extends Activity {
         Button add     = findViewById(R.id.add_aluno);
         Button del     = findViewById(R.id.del_aluno);
         Button search  = findViewById(R.id.search_aluno);
-        
+
 
         // Add aluno
         add.setOnClickListener(new View.OnClickListener() {

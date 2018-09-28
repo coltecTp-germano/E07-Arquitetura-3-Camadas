@@ -33,6 +33,6 @@ public abstract class Database extends RoomDatabase {
                 Database.class).build();
     }
 
-    public abstract IAlunoRepository getAlunoRepository();
-    public abstract IProfessorRepository getProfessorRepository();
+//    public abstract IAlunoRepository getAlunoRepository();
+//    public abstract IProfessorRepository getProfessorRepository();
 }
