@@ -32,4 +32,7 @@ public abstract class Database extends RoomDatabase {
         sInstance = Room.inMemoryDatabaseBuilder(context.getApplicationContext(),
                 Database.class).build();
     }
+
+//    public abstract IAlunoRepository getAlunoRepository();
+//    public abstract IProfessorRepository getProfessorRepository();
 }

@@ -11,6 +11,7 @@ public class FachadaAluno implements IFachadaAluno {
     private AlunoController mAlunoController;
 
     public FachadaAluno (AlunoController alunoController) {
+
         mAlunoController = alunoController;
     }
 
