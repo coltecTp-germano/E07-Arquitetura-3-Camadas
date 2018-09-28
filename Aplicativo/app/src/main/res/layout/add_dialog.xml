@@ -9,14 +9,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="Nome" />
+        android:hint="Nome" />
 
     <EditText
         android:id="@+id/matricula"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="number"
-        android:text="Matrícula" />
+        android:hint="Matrícula" />
 
     <Button
         android:id="@+id/concluir"
