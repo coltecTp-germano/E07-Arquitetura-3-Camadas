@@ -13,12 +13,15 @@ import br.ufmg.coltec.tp.appacademico.data.interfaces.IAlunoRepository;
 import br.ufmg.coltec.tp.appacademico.data.interfaces.IProfessorRepository;
 import br.ufmg.coltec.tp.appacademico.service.FachadaAluno;
 import br.ufmg.coltec.tp.appacademico.service.FachadaProfessor;
+import br.ufmg.coltec.tp.appacademico.view.Aluno.AlunoActivity;
+import br.ufmg.coltec.tp.appacademico.view.Professor.ProfessorActivity;
 import dagger.Component;
 
 @Singleton
 @Component(dependencies = {}, modules = {AppModule.class, RoomModule.class, ProfessorModule.class, AlunoModule.class})
 public interface AppComponent {
-    void inject(Activity mainActivity);
+    void inject(AlunoActivity alunoActivity);
+    void inject(ProfessorActivity professorActivity);
 
     Database database();
     Application application();

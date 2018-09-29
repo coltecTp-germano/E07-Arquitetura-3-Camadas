@@ -3,10 +3,13 @@ package br.ufmg.coltec.tp.appacademico.view.Aluno;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import java.util.ArrayList;
 
 import javax.inject.Inject;
 
@@ -14,6 +17,13 @@ import br.ufmg.coltec.tp.appacademico.R;
 import br.ufmg.coltec.tp.appacademico.crossCutting.IoC.MainApplication;
 import br.ufmg.coltec.tp.appacademico.model.Aluno;
 import br.ufmg.coltec.tp.appacademico.service.interfaces.IFachadaAluno;
+import br.ufmg.coltec.tp.appacademico.view.SearchModel;
+import ir.mirrajabi.searchdialog.SimpleSearchDialogCompat;
+import ir.mirrajabi.searchdialog.core.BaseSearchDialogCompat;
+import ir.mirrajabi.searchdialog.core.SearchResultListener;
+import ir.mirrajabi.searchdialog.core.Searchable;
+
+import static android.content.ContentValues.TAG;
 
 public class AlunoActivity extends Activity {
 
@@ -26,10 +36,9 @@ public class AlunoActivity extends Activity {
         setContentView(R.layout.activity_aluno);
 
         Button add     = findViewById(R.id.add_aluno);
-        Button del     = findViewById(R.id.del_aluno);
-        Button search  = findViewById(R.id.search_aluno);
+        Button search  = findViewById(R.id.del_aluno);
 
-        MainApplication.getComponent().inject(this);// informando ao dagger sobre o uso de um component e a necessidade de injetar dependência
+        MainApplication.getComponent().inject(this); // informando ao dagger sobre o uso de um component e a necessidade de injetar dependência
 
         // Add aluno
         add.setOnClickListener(new View.OnClickListener() {
@@ -69,21 +78,40 @@ public class AlunoActivity extends Activity {
         });
 
 
-        // Delete aluno
-        del.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
 
         // Search aluno
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+                new SimpleSearchDialogCompat(AlunoActivity.this,
+                    "Deletar um aluno",
+                    "Nome...",
+                    null,
+                    initData(),
+                    new SearchResultListener<Searchable>() {
+                        @Override
+                        public void onSelected(BaseSearchDialogCompat baseSearchDialogCompat, Searchable searchable, int i) {
+                            Toast.makeText(AlunoActivity.this,
+                                    searchable.getTitle()+" deletado",
+                                    Toast.LENGTH_SHORT)
+                                    .show();
+                            baseSearchDialogCompat.dismiss();
+                        }
+                    }).show();
             }
         });
+    }
+
+    private ArrayList<SearchModel> initData() {
+        ArrayList<SearchModel> items = new ArrayList<>();
+        items.add(new SearchModel("Bryan"));
+        items.add(new SearchModel("Germano"));
+        items.add(new SearchModel("Bernardo"));
+        items.add(new SearchModel("Mariana"));
+        items.add(new SearchModel("Gustavo"));
+        items.add(new SearchModel("Rita"));
+
+        return items;
     }
 }
