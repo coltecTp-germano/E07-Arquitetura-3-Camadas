@@ -3,7 +3,6 @@ package br.ufmg.coltec.tp.appacademico.view.Aluno;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,8 +21,6 @@ import ir.mirrajabi.searchdialog.SimpleSearchDialogCompat;
 import ir.mirrajabi.searchdialog.core.BaseSearchDialogCompat;
 import ir.mirrajabi.searchdialog.core.SearchResultListener;
 import ir.mirrajabi.searchdialog.core.Searchable;
-
-import static android.content.ContentValues.TAG;
 
 public class AlunoActivity extends Activity {
 
