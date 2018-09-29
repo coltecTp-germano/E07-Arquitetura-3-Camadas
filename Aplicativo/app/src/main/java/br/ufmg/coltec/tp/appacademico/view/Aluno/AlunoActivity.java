@@ -9,13 +9,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-<<<<<<< HEAD
 import java.util.ArrayList;
 
 import javax.inject.Inject;
 
 import br.ufmg.coltec.tp.appacademico.R;
-import br.ufmg.coltec.tp.appacademico.data.interfaces.IAlunoRepository;
+import br.ufmg.coltec.tp.appacademico.crossCutting.IoC.MainApplication;
+import br.ufmg.coltec.tp.appacademico.model.Aluno;
+import br.ufmg.coltec.tp.appacademico.service.interfaces.IFachadaAluno;
 import br.ufmg.coltec.tp.appacademico.view.SearchModel;
 import ir.mirrajabi.searchdialog.SimpleSearchDialogCompat;
 import ir.mirrajabi.searchdialog.core.BaseSearchDialogCompat;
@@ -26,19 +27,8 @@ import static android.content.ContentValues.TAG;
 
 public class AlunoActivity extends Activity {
 
-=======
-import javax.inject.Inject;
-
-import br.ufmg.coltec.tp.appacademico.R;
-import br.ufmg.coltec.tp.appacademico.crossCutting.IoC.MainApplication;
-import br.ufmg.coltec.tp.appacademico.model.Aluno;
-import br.ufmg.coltec.tp.appacademico.service.interfaces.IFachadaAluno;
-
-public class AlunoActivity extends Activity {
-
     @Inject
     public IFachadaAluno fachadaAluno;
->>>>>>> 6514ba8336bd80c4b58ecfec5f948e6f381ec0d7
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,9 +36,9 @@ public class AlunoActivity extends Activity {
         setContentView(R.layout.activity_aluno);
 
         Button add     = findViewById(R.id.add_aluno);
-        Button search  = findViewById(R.id.search_aluno);
+        Button search  = findViewById(R.id.del_aluno);
 
-        MainApplication.getComponent().inject(this);// informando ao dagger sobre o uso de um component e a necessidade de injetar dependência
+        MainApplication.getComponent().inject(this); // informando ao dagger sobre o uso de um component e a necessidade de injetar dependência
 
         // Add aluno
         add.setOnClickListener(new View.OnClickListener() {
@@ -94,9 +84,7 @@ public class AlunoActivity extends Activity {
             @Override
             public void onClick(View v) {
 
-                Log.e(TAG, "onClick: Entrou no onclick");
-
-            new SimpleSearchDialogCompat(AlunoActivity.this,
+                new SimpleSearchDialogCompat(AlunoActivity.this,
                     "Deletar um aluno",
                     "Nome...",
                     null,

@@ -8,9 +8,23 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
+import javax.inject.Inject;
+
 import br.ufmg.coltec.tp.appacademico.R;
+import br.ufmg.coltec.tp.appacademico.service.interfaces.IFachadaProfessor;
+import br.ufmg.coltec.tp.appacademico.view.Aluno.AlunoActivity;
+import br.ufmg.coltec.tp.appacademico.view.SearchModel;
+import ir.mirrajabi.searchdialog.SimpleSearchDialogCompat;
+import ir.mirrajabi.searchdialog.core.BaseSearchDialogCompat;
+import ir.mirrajabi.searchdialog.core.SearchResultListener;
+import ir.mirrajabi.searchdialog.core.Searchable;
 
 public class ProfessorActivity extends Activity {
+
+    @Inject
+    public IFachadaProfessor fachadaProfessor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,12 +79,40 @@ public class ProfessorActivity extends Activity {
         });
 
 
-        // Search aluno
+        // Search professor
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+                new SimpleSearchDialogCompat(ProfessorActivity.this,
+                        "Deletar um professor",
+                        "Nome...",
+                        null,
+                        initData(),
+                        new SearchResultListener<Searchable>() {
+                            @Override
+                            public void onSelected(BaseSearchDialogCompat baseSearchDialogCompat, Searchable searchable, int i) {
+                                Toast.makeText(ProfessorActivity.this,
+                                        searchable.getTitle()+" deletado",
+                                        Toast.LENGTH_SHORT)
+                                        .show();
+                                baseSearchDialogCompat.dismiss();
+                            }
+                        }).show();
             }
         });
     }
+
+    private ArrayList<SearchModel> initData() {
+        ArrayList<SearchModel> items = new ArrayList<>();
+        items.add(new SearchModel("João Montandon"));
+        items.add(new SearchModel("Giovanni"));
+        items.add(new SearchModel("Kelly"));
+        items.add(new SearchModel("Natália"));
+        items.add(new SearchModel("Tchelão"));
+        items.add(new SearchModel("Eliezer"));
+
+        return items;
+    }
+
 }
