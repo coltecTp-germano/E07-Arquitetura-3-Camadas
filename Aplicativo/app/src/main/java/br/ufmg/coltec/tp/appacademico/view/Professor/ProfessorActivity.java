@@ -10,11 +10,8 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-import javax.inject.Inject;
-
 import br.ufmg.coltec.tp.appacademico.R;
 import br.ufmg.coltec.tp.appacademico.service.interfaces.IFachadaProfessor;
-import br.ufmg.coltec.tp.appacademico.view.Aluno.AlunoActivity;
 import br.ufmg.coltec.tp.appacademico.view.SearchModel;
 import ir.mirrajabi.searchdialog.SimpleSearchDialogCompat;
 import ir.mirrajabi.searchdialog.core.BaseSearchDialogCompat;
@@ -23,7 +20,6 @@ import ir.mirrajabi.searchdialog.core.Searchable;
 
 public class ProfessorActivity extends Activity {
 
-    @Inject
     public IFachadaProfessor fachadaProfessor;
 
     @Override

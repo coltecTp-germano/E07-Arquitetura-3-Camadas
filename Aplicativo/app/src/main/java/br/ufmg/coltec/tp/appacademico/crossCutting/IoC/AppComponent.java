@@ -1,7 +1,6 @@
 package br.ufmg.coltec.tp.appacademico.crossCutting.IoC;
 
 
-import android.app.Activity;
 import android.app.Application;
 
 import javax.inject.Singleton;
@@ -11,8 +10,8 @@ import br.ufmg.coltec.tp.appacademico.controller.ProfessorController;
 import br.ufmg.coltec.tp.appacademico.data.Database;
 import br.ufmg.coltec.tp.appacademico.data.interfaces.IAlunoRepository;
 import br.ufmg.coltec.tp.appacademico.data.interfaces.IProfessorRepository;
-import br.ufmg.coltec.tp.appacademico.service.FachadaAluno;
-import br.ufmg.coltec.tp.appacademico.service.FachadaProfessor;
+import br.ufmg.coltec.tp.appacademico.service.interfaces.IFachadaAluno;
+import br.ufmg.coltec.tp.appacademico.service.interfaces.IFachadaProfessor;
 import br.ufmg.coltec.tp.appacademico.view.Aluno.AlunoActivity;
 import br.ufmg.coltec.tp.appacademico.view.Professor.ProfessorActivity;
 import dagger.Component;
@@ -29,6 +28,6 @@ public interface AppComponent {
     IProfessorRepository professorRepository();
     AlunoController alunoController();
     ProfessorController professorController();
-    FachadaProfessor fachadaProfessor();
-    FachadaAluno fachadaAluno();
+    IFachadaProfessor fachadaProfessor();
+    IFachadaAluno fachadaAluno();
 }

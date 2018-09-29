@@ -2,6 +2,7 @@ package br.ufmg.coltec.tp.appacademico.crossCutting.IoC;
 
 import br.ufmg.coltec.tp.appacademico.controller.ProfessorController;
 import br.ufmg.coltec.tp.appacademico.service.FachadaProfessor;
+import br.ufmg.coltec.tp.appacademico.service.interfaces.IFachadaProfessor;
 import dagger.Module;
 import dagger.Provides;
 
@@ -9,7 +10,7 @@ import dagger.Provides;
 public class ProfessorModule {
 
     @Provides
-    public FachadaProfessor provideFachadaProfessor(ProfessorController controller) {
+    public IFachadaProfessor provideFachadaProfessor(ProfessorController controller) {
         return new FachadaProfessor(controller);
     }
 
