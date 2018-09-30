@@ -18,7 +18,11 @@ public class Professor {
     public Professor() {}
 
     public Professor(long id, String nome) {
+        this(nome);
         this.id = id;
+    }
+
+    public Professor(String nome) {
         this.nome = nome;
     }
 

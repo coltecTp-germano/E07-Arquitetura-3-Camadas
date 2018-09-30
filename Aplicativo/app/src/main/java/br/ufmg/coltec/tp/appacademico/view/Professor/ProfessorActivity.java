@@ -11,6 +11,11 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import br.ufmg.coltec.tp.appacademico.R;
+import br.ufmg.coltec.tp.appacademico.crossCutting.IoC.AppModule;
+import br.ufmg.coltec.tp.appacademico.crossCutting.IoC.DaggerAppComponent;
+import br.ufmg.coltec.tp.appacademico.crossCutting.IoC.ProfessorModule;
+import br.ufmg.coltec.tp.appacademico.crossCutting.IoC.RoomModule;
+import br.ufmg.coltec.tp.appacademico.model.Professor;
 import br.ufmg.coltec.tp.appacademico.service.interfaces.IFachadaProfessor;
 import br.ufmg.coltec.tp.appacademico.view.SearchModel;
 import ir.mirrajabi.searchdialog.SimpleSearchDialogCompat;
@@ -30,6 +35,12 @@ public class ProfessorActivity extends Activity {
         Button add     = findViewById(R.id.add_prof);
         Button search  = findViewById(R.id.search_prof);
 
+        DaggerAppComponent.builder()
+                .appModule(new AppModule(getApplication()))
+                .roomModule(new RoomModule(getApplication()))
+                .professorModule(new ProfessorModule())
+                .build()
+                .inject(this);
 
         // Add professor
         add.setOnClickListener(new View.OnClickListener() {
@@ -53,6 +64,7 @@ public class ProfessorActivity extends Activity {
                         if (!nome.getText().toString().isEmpty()) {
 
                             /* espaço pra função de add professor */
+                            fachadaProfessor.addProfessor(new Professor(nome.toString()));
 
                             Toast.makeText(ProfessorActivity.this,
                                     "Adicionado com sucesso",

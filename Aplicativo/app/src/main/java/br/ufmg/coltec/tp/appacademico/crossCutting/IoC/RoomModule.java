@@ -1,7 +1,6 @@
 package br.ufmg.coltec.tp.appacademico.crossCutting.IoC;
 
 import android.app.Application;
-import android.arch.persistence.room.Room;
 
 import javax.inject.Singleton;
 
@@ -19,7 +18,8 @@ public class RoomModule {
     private Database database;
 
     public RoomModule(Application mApplication) {
-        database = Room.databaseBuilder(mApplication, Database.class, "demo-db").build();
+        database = Database.getInstance(mApplication.getApplicationContext());
+//        database = Room.databaseBuilder(mApplication, Database.class, "demo-db").build();
     }
 
     @Singleton

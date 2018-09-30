@@ -20,7 +20,7 @@ public abstract class Database extends RoomDatabase {
     public static synchronized Database getInstance (Context context) {
         if (sInstance == null) {
             sInstance = Room
-                    .databaseBuilder(context.getApplicationContext(), Database.class, "Escola")
+                    .databaseBuilder(context, Database.class, "Escola")
                     .allowMainThreadQueries()
                     .build();
         }

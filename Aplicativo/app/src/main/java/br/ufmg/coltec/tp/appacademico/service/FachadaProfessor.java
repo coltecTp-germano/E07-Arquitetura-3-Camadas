@@ -15,12 +15,12 @@ public class FachadaProfessor implements IFachadaProfessor {
     }
 
     @Override
-    public void addAluno(Professor professor) {
+    public void addProfessor(Professor professor) {
         mProfessorController.addProfessor(professor);
     }
 
     @Override
-    public void updateAluno(Professor professor) {
+    public void updateProfessor(Professor professor) {
         mProfessorController.updateProfessor(professor);
     }
 
@@ -30,7 +30,7 @@ public class FachadaProfessor implements IFachadaProfessor {
     }
 
     @Override
-    public void deleteAluno(long id) {
+    public void deleteProfessor(long id) {
         mProfessorController.deleteAluno(id);
     }
 }
