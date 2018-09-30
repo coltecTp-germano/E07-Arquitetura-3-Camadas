@@ -13,7 +13,10 @@ import java.util.ArrayList;
 import javax.inject.Inject;
 
 import br.ufmg.coltec.tp.appacademico.R;
-import br.ufmg.coltec.tp.appacademico.crossCutting.IoC.MainApplication;
+import br.ufmg.coltec.tp.appacademico.crossCutting.IoC.AlunoModule;
+import br.ufmg.coltec.tp.appacademico.crossCutting.IoC.AppModule;
+import br.ufmg.coltec.tp.appacademico.crossCutting.IoC.DaggerAppComponent;
+import br.ufmg.coltec.tp.appacademico.crossCutting.IoC.RoomModule;
 import br.ufmg.coltec.tp.appacademico.model.Aluno;
 import br.ufmg.coltec.tp.appacademico.service.interfaces.IFachadaAluno;
 import br.ufmg.coltec.tp.appacademico.view.SearchModel;
@@ -35,7 +38,12 @@ public class AlunoActivity extends Activity {
         Button add     = findViewById(R.id.add_aluno);
         Button search  = findViewById(R.id.del_aluno);
 
-        MainApplication.getComponent().inject(this); // informando ao dagger sobre o uso de um component e a necessidade de injetar dependência
+        DaggerAppComponent.builder()
+                .appModule(new AppModule(getApplication()))
+                .roomModule(new RoomModule(getApplication()))
+                .alunoModule(new AlunoModule())
+                .build()
+                .inject(this);
 
         // Add aluno
         add.setOnClickListener(new View.OnClickListener() {

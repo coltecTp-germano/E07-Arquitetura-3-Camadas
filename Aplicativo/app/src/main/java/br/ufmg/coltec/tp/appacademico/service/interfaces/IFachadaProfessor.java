@@ -5,8 +5,8 @@ import java.util.List;
 import br.ufmg.coltec.tp.appacademico.model.Professor;
 
 public interface IFachadaProfessor {
-    public void addAluno(Professor professor);
-    public void updateAluno(Professor professor);
+    public void addProfessor(Professor professor);
+    public void updateProfessor(Professor professor);
     public List<Professor> selectAll();
-    public void deleteAluno(long id);
+    public void deleteProfessor(long id);
 }
