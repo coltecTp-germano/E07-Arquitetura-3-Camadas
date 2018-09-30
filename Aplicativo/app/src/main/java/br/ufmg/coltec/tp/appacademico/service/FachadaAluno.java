@@ -31,7 +31,7 @@ public class FachadaAluno implements IFachadaAluno {
     }
 
     @Override
-    public void deleteAluno(long id) {
-        mAlunoController.deleteAluno(id);
+    public void deleteAluno(String name) {
+        mAlunoController.deleteAluno(name);
     }
 }

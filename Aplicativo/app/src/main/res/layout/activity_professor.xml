@@ -4,23 +4,34 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Funções para professor"
+        android:textAlignment="center"
+        android:textSize="25dp"
+        android:layout_marginTop="100dp"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="10dp">
 
         <Button
             android:id="@+id/add_prof"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:padding="10dp"
             android:text="Adicionar Professor"/>
 
         <Button
             android:id="@+id/search_prof"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Buscar Professor"/>
+            android:padding="10dp"
+            android:text="Deletar Professor"/>
 
     </LinearLayout>
 

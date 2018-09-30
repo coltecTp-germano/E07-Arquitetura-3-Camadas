@@ -40,8 +40,8 @@ public class ProfessorController {
         return mProfessors;
     }
 
-    public void deleteAluno(long id) {
-        mProfessorRepository.deleteById(id);
+    public void deleteAluno(String nome) {
+        mProfessorRepository.deleteByName(nome);
     }
 
     private Professor createProfessorFromCursor(Cursor c) {

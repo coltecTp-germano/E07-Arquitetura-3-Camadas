@@ -9,6 +9,7 @@ import android.database.Cursor;
 import br.ufmg.coltec.tp.appacademico.model.Aluno;
 
 import static br.ufmg.coltec.tp.appacademico.data.contract.AlunoContract.AlunoEntry.COLUMN_ID;
+import static br.ufmg.coltec.tp.appacademico.data.contract.AlunoContract.AlunoEntry.COLUMN_NAME;
 import static br.ufmg.coltec.tp.appacademico.data.contract.AlunoContract.AlunoEntry.TABLE_NAME;
 
 @Dao
@@ -22,8 +23,8 @@ public interface IAlunoRepository {
     @Query("DELETE FROM " + TABLE_NAME)
     int deleteAll();
 
-    @Query("DELETE FROM " + TABLE_NAME + " WHERE " +  COLUMN_ID + " = :id")
-    int deleteById(long id);
+    @Query("DELETE FROM " + TABLE_NAME + " WHERE " +  COLUMN_NAME + " = :name")
+    int deleteByName(String name);
 
     @Query("SELECT COUNT(*) FROM " + TABLE_NAME)
     int count();

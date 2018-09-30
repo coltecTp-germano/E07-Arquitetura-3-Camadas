@@ -22,8 +22,6 @@
         android:id="@+id/concluir"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Concluir"
-        android:textColor="@android:color/white"
-        android:backgroundTint="@color/colorAccent"/>
+        android:text="Concluir" />
 
 </LinearLayout>

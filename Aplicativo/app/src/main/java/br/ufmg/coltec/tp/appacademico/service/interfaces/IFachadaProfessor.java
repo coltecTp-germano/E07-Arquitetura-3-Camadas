@@ -8,5 +8,5 @@ public interface IFachadaProfessor {
     public void addProfessor(Professor professor);
     public void updateProfessor(Professor professor);
     public List<Professor> selectAll();
-    public void deleteProfessor(long id);
+    public void deleteProfessor(String nome);
 }
