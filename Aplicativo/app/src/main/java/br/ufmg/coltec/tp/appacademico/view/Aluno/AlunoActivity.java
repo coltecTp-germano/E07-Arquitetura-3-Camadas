@@ -3,12 +3,14 @@ package br.ufmg.coltec.tp.appacademico.view.Aluno;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -24,6 +26,8 @@ import ir.mirrajabi.searchdialog.SimpleSearchDialogCompat;
 import ir.mirrajabi.searchdialog.core.BaseSearchDialogCompat;
 import ir.mirrajabi.searchdialog.core.SearchResultListener;
 import ir.mirrajabi.searchdialog.core.Searchable;
+
+import static android.content.ContentValues.TAG;
 
 public class AlunoActivity extends Activity {
 
@@ -58,15 +62,20 @@ public class AlunoActivity extends Activity {
                 final EditText matricula = mView.findViewById(R.id.matricula);
                 Button btn = mView.findViewById(R.id.concluir);
 
+                mBuilder.setView(mView);
+                final AlertDialog dialog = mBuilder.create();
+                dialog.show();
+
                 btn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         if (!nome.getText().toString().isEmpty() && !matricula.getText().toString().isEmpty()) {
-                            fachadaAluno.addAluno(new Aluno(nome.toString(), matricula.toString()));
+                            fachadaAluno.addAluno(new Aluno(nome.getText().toString(), matricula.getText().toString()));
                             Toast.makeText(AlunoActivity.this,
-                                    "Adicionado com sucesso",
+                                    nome.getText().toString() + " adicionado",
                                     Toast.LENGTH_SHORT)
                                     .show();
+                            dialog.dismiss();
                         } else {
                             Toast.makeText(AlunoActivity.this,
                                     "Preencha todos os campos",
@@ -75,10 +84,6 @@ public class AlunoActivity extends Activity {
                         }
                     }
                 });
-
-                mBuilder.setView(mView);
-                AlertDialog dialog = mBuilder.create();
-                dialog.show();
             }
         });
 
@@ -97,10 +102,12 @@ public class AlunoActivity extends Activity {
                     new SearchResultListener<Searchable>() {
                         @Override
                         public void onSelected(BaseSearchDialogCompat baseSearchDialogCompat, Searchable searchable, int i) {
+                            String name = searchable.getTitle();
                             Toast.makeText(AlunoActivity.this,
-                                    searchable.getTitle()+" deletado",
+                                    name +" deletado",
                                     Toast.LENGTH_SHORT)
                                     .show();
+                            fachadaAluno.deleteAluno(name);
                             baseSearchDialogCompat.dismiss();
                         }
                     }).show();
@@ -110,12 +117,12 @@ public class AlunoActivity extends Activity {
 
     private ArrayList<SearchModel> initData() {
         ArrayList<SearchModel> items = new ArrayList<>();
-        items.add(new SearchModel("Bryan"));
-        items.add(new SearchModel("Germano"));
-        items.add(new SearchModel("Bernardo"));
-        items.add(new SearchModel("Mariana"));
-        items.add(new SearchModel("Gustavo"));
-        items.add(new SearchModel("Rita"));
+
+        List<Aluno> alunos = fachadaAluno.selectAll();
+
+        for(int i = 0; i < alunos.size(); i++) {
+            items.add(new SearchModel(alunos.get(i).getNome()));
+        }
 
         return items;
     }

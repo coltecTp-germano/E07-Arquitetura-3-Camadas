@@ -30,7 +30,7 @@ public class FachadaProfessor implements IFachadaProfessor {
     }
 
     @Override
-    public void deleteProfessor(long id) {
-        mProfessorController.deleteAluno(id);
+    public void deleteProfessor(String name) {
+        mProfessorController.deleteAluno(name);
     }
 }

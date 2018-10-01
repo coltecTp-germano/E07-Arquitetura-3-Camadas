@@ -9,6 +9,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import javax.inject.Inject;
 
 import br.ufmg.coltec.tp.appacademico.R;
 import br.ufmg.coltec.tp.appacademico.crossCutting.IoC.AppModule;
@@ -25,6 +28,7 @@ import ir.mirrajabi.searchdialog.core.Searchable;
 
 public class ProfessorActivity extends Activity {
 
+    @Inject
     public IFachadaProfessor fachadaProfessor;
 
     @Override
@@ -58,20 +62,25 @@ public class ProfessorActivity extends Activity {
 
                 Button btn = mView.findViewById(R.id.concluir);
 
+                mBuilder.setView(mView);
+                final AlertDialog dialog = mBuilder.create();
+                dialog.show();
+
                 btn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         if (!nome.getText().toString().isEmpty()) {
 
-                            /* espaço pra função de add professor */
-                            fachadaProfessor.addProfessor(new Professor(nome.toString()));
+                            /* add professor */
+                            fachadaProfessor.addProfessor(new Professor(nome.getText().toString()));
 
                             Toast.makeText(ProfessorActivity.this,
-                                    "Adicionado com sucesso",
+                                    nome.getText().toString() + " adicionado",
                                     Toast.LENGTH_SHORT)
                                     .show();
-                        } else {
+                            dialog.dismiss();
 
+                        } else {
                             Toast.makeText(ProfessorActivity.this,
                                     "Preencha todos os campos",
                                     Toast.LENGTH_SHORT)
@@ -79,15 +88,11 @@ public class ProfessorActivity extends Activity {
                         }
                     }
                 });
-
-                mBuilder.setView(mView);
-                AlertDialog dialog = mBuilder.create();
-                dialog.show();
             }
         });
 
 
-        // Search professor
+        // Search professor and delete
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -100,10 +105,12 @@ public class ProfessorActivity extends Activity {
                         new SearchResultListener<Searchable>() {
                             @Override
                             public void onSelected(BaseSearchDialogCompat baseSearchDialogCompat, Searchable searchable, int i) {
+                                String name = searchable.getTitle();
                                 Toast.makeText(ProfessorActivity.this,
-                                        searchable.getTitle()+" deletado",
+                                        name + " deletado",
                                         Toast.LENGTH_SHORT)
                                         .show();
+                                fachadaProfessor.deleteProfessor(name);
                                 baseSearchDialogCompat.dismiss();
                             }
                         }).show();
@@ -113,12 +120,11 @@ public class ProfessorActivity extends Activity {
 
     private ArrayList<SearchModel> initData() {
         ArrayList<SearchModel> items = new ArrayList<>();
-        items.add(new SearchModel("João Montandon"));
-        items.add(new SearchModel("Giovanni"));
-        items.add(new SearchModel("Kelly"));
-        items.add(new SearchModel("Natália"));
-        items.add(new SearchModel("Tchelão"));
-        items.add(new SearchModel("Eliezer"));
+
+        List<Professor> professores = fachadaProfessor.selectAll();
+
+        for (int i = 0; i < professores.size(); i++)
+            items.add(new SearchModel(professores.get(i).getNome()));
 
         return items;
     }

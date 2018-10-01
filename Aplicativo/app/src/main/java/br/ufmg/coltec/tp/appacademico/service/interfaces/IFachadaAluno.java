@@ -8,5 +8,5 @@ public interface IFachadaAluno {
     public void addAluno(Aluno aluno);
     public void updateAluno(Aluno aluno);
     public List<Aluno> selectAll();
-    public void deleteAluno(long id);
+    public void deleteAluno(String name);
 }

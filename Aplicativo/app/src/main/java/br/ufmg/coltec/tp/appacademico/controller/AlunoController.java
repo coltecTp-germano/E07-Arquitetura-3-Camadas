@@ -40,8 +40,8 @@ public class AlunoController {
         return mAlunos;
     }
 
-    public void deleteAluno(long id) {
-        mAlunoRepository.deleteById(id);
+    public void deleteAluno(String name) {
+        mAlunoRepository.deleteByName(name);
     }
 
     private Aluno createAlunoFromCursor(Cursor c) {
